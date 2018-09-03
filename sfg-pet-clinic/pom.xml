@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>guru.springframework</groupId>
 	<artifactId>sfg-pet-clinic</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
 
 	<name>sfg-pet-clinic</name>
@@ -14,7 +14,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -23,24 +23,33 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<dependencies>
-		
-	
-
-	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<!-- <version>2.5.3</version> -->
+				<configuration>
+					<goals>install</goals> <!-- bydefault goals is 'deploy' -->
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
+	<scm>
+	<!-- 	<developerConnection> scm:git:https://github.com/meetkiran/sfg-pet-clinic1.git</developerConnection> -->
+	 
+	  <url>https://github.com/meetkiran/sfg-pet-clinic1</url>
+		<connection>scm:git:https://github.com/meetkiran/sfg-pet-clinic1.git</connection>
+		<tag>HEAD</tag>
+  </scm>
 
 	<modules>
 		<module>pet-clinic-data</module>
-    <module>pet-clinic-web</module>
-  </modules>
+		<module>pet-clinic-web</module>
+	</modules>
 </project>

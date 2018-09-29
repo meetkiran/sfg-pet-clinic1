@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
 @Component
 public class DataLoader implements CommandLineRunner {// this interface is used to initialize data{
 
+	@Autowired
 	private final OwnerService ownerService;
 	private final VetService vetService;
 
@@ -42,11 +44,10 @@ public class DataLoader implements CommandLineRunner {// this interface is used 
 		vetService.save(mVet);
 		System.out.println(">>>>>>vet saved");
 	}
-
-	public DataLoader() {
+	//@Autowired is optional here
+	public DataLoader(OwnerService ownerService, VetService vetService) {
 		super();
-		this.ownerService = new OwnerServiceMap();
-		this.vetService = new VetServiceMap();
+		this.ownerService = ownerService;
+		this.vetService = vetService;
 	}
-
 }

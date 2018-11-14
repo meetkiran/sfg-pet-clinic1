@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pet-clinic-web-0.0.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sfg-pet-clinic/pet-clinic-web/target/pet-clinic-web-0.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

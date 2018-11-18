@@ -32,12 +32,16 @@ public class OwnerController {
     }
 
 
-    @RequestMapping("/find")
+    @RequestMapping({"/","/index",})
     public String findOwners(Model model){
-       // model.addAttribute("owner", Owner.builder().build());
-        return "owners/findOwners";
+        model.addAttribute("owners", ownerService.findAll());
+        return "owners/index";
     }
-
+    @RequestMapping({"/find",})
+    public String findOwner(){
+        return "owners/notImplemented";
+    }
+    
     @GetMapping
     public String processFindForm(Owner owner, BindingResult result, Model model){
         // allow parameterless GET request for /owners to return all records

@@ -1,11 +1,9 @@
 package guru.springframework.sfgpetclinic.controllers;
 
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.ArgumentMatchers.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,7 +33,7 @@ class OwnerControllerTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		owners = new HashSet();
+		owners = new HashSet<>();
 		owners.add(Owner.builder().id(1L).build());
 		owners.add(Owner.builder().id(2L).build());
 		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
@@ -43,13 +41,20 @@ class OwnerControllerTest {
 
 	@Test
 	void testFindOwners() throws Exception {
-		//when(service.findAll()).thenReturn(owners);
+		when(service.findAll()).thenReturn(owners);
 		mockMvc.perform(get("/owners/")).andExpect(status().isOk()).andExpect(view().name("owners/index"));
 	}
 	@Test
 	void findOwners() throws Exception {
-		//when(service.findAll()).thenReturn(owners);
 		mockMvc.perform(get("/owners/find")).andExpect(status().isOk()).andExpect(view().name("owners/notImplemented"));
 		verifyZeroInteractions(service);
+	}
+	@Test
+	void listownersByIndex() throws Exception{
+		when(service.findById(anyLong())).thenReturn( Owner.builder().id(1L).build());
+		mockMvc.perform(get("/owners/1")
+		).andExpect(status().isOk())
+		.andExpect(view().name("/owners/ownerDetails"))
+		.andExpect(model().attribute("owner",isNotNull()));
 	}
 }

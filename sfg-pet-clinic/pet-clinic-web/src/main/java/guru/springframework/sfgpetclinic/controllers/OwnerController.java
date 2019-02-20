@@ -32,16 +32,12 @@ public class OwnerController {
     }
 
 
-    @RequestMapping({"/","/index",})
+    @RequestMapping("/find")
     public String findOwners(Model model){
-        model.addAttribute("owners", ownerService.findAll());
-        return "owners/index";
+        model.addAttribute("owner", Owner.builder().build());
+        return "owners/findOwners";
     }
-    @RequestMapping({"/find",})
-    public String findOwner(){
-        return "owners/notImplemented";
-    }
-    
+
     @GetMapping
     public String processFindForm(Owner owner, BindingResult result, Model model){
         // allow parameterless GET request for /owners to return all records
@@ -76,7 +72,7 @@ public class OwnerController {
 
     @GetMapping("/new")
     public String initCreationForm(Model model) {
-      //  model.addAttribute("owner", Owner.builder().build());
+        model.addAttribute("owner", Owner.builder().build());
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
     }
 

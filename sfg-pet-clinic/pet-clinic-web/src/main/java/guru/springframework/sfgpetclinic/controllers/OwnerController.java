@@ -25,7 +25,7 @@ public class OwnerController {
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;
     }
-//data binder automatically binds web forms to class fields,here we can specify which fieds we dont wan to bind
+//data binder automatically binds web forms to class fields,here we can specify which fields we dont wan to bind
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
@@ -34,7 +34,7 @@ public class OwnerController {
 
     @RequestMapping("/find")
     public String findOwners(Model model){
-        model.addAttribute("owner", Owner.builder().build());
+        model.addAttribute("owners", Owner.builder().build());
         return "owners/findOwners";
     }
 
